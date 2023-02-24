@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace DraftSimulator.Controllers;
 
@@ -6,19 +7,28 @@ namespace DraftSimulator.Controllers;
 [Route("[controller]")]
 public class DraftController : ControllerBase
 {
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<DraftController> _logger;
+    private DraftStore _draftStore;
 
-    public DraftController(ILogger<WeatherForecastController> logger)
+    public DraftController(
+        DraftStore draftStore,
+        ILogger<DraftController> logger)
     {
+        _draftStore = draftStore;
         _logger = logger;
     }
 
-    [HttpGet]
-    public ActionResult<Draft> Get()
+    [HttpPost]
+    public IActionResult Add(NewDraft newDraft)
     {
-        return new Draft{
-            Name = "DefaultDraft",
-            Type = "DefaultType"
-        };
+        Draft draft = _draftStore.Add(newDraft);
+        return Ok(draft.DraftId);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult Get(Guid id)
+    {  
+        Draft draft = _draftStore.Get(id);
+        return Ok(draft);
     }
 }
