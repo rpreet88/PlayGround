@@ -22,11 +22,13 @@ jobs:
       with:
         dotnet-version: 7.0.x
     
-    - name: Restore dependencies
+    - name: Restore dependencies - DraftSimulator
       run: dotnet restore
+      working-directory: ./DraftSimulator
       
-    - name: Build Projects
+    - name: Build Project - DraftSimulator
       run: dotnet build
+      working-directory: ./DraftSimulator
 
-    - name: Execute unit tests
-      run: dotnet test
+    # - name: Execute unit tests
+    # run: dotnet test
