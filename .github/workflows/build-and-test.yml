@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  build:
+  build-and-test:
     runs-on: windows-latest  
     
     steps:
@@ -30,5 +30,14 @@ jobs:
       run: dotnet build
       working-directory: ./DraftSimulator
 
-    # - name: Execute unit tests
-    # run: dotnet test
+    - name: Restore dependencies - DraftSimulatorTests
+      run: dotnet restore
+      working-directory: ./DraftSimulator.Tests
+      
+    - name: Build Project - DraftSimulatorTests
+      run: dotnet build
+      working-directory: ./DraftSimulator.Tests
+
+    - name: Run Tests - DraftSimulator
+      run: dotnet test
+      working-directory: ./DraftSimulator.Tests
