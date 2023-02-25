@@ -28,7 +28,7 @@ public class DraftStore
 
         if (draft is null)
         {
-            throw new Exception("Failed to create Draft");
+            throw new GeneralFailure();
         }
 
         return draft;
