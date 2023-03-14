@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DraftSimulator;
 
@@ -32,5 +33,22 @@ public class DraftStore
         }
 
         return draft;
+    }
+
+    public void AddPlayer(Guid draftId, Guid teamId, Player player)
+    {
+        Draft? draft = Get(draftId);
+        if (draft is null)
+        {
+            throw new GeneralFailure();
+        }
+
+        Team? team = draft.Teams.FirstOrDefault(t => t.TeamId == teamId);
+        if (team == null)
+        {
+            throw new GeneralFailure();
+        }
+
+        team.Players.Add(player);
     }
 }

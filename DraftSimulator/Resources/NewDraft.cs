@@ -7,4 +7,6 @@ public class NewDraft
     public string? Type { get; set;}
 
     public int NumPlayers { get; set;}
+
+    public string[]? Teams { get; set; }
 }
