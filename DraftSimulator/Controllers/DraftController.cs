@@ -31,4 +31,28 @@ public class DraftController : ControllerBase
         Draft draft = _draftStore.Get(id);
         return Ok(draft);
     }
+
+    [HttpGet("{draftId}/team/{teamId}")]
+    public IActionResult Get(Guid draftId, Guid teamId)
+    {  
+        Draft draft = _draftStore.Get(draftId);
+        Team? team = draft.Teams.FirstOrDefault(t => t.TeamId == teamId);
+        if (team == null)
+        {
+            return NotFound();
+        }
+        return Ok(team);
+    }
+
+    [HttpPost("{draftId}/team/{teamId}/player")]
+    public IActionResult Add(Guid draftId, Guid teamId, [FromBody] string playerId)
+    {
+        Player player = new Player
+        {
+            Name = playerId
+        };
+
+        _draftStore.AddPlayer(draftId, teamId, player);
+        return Ok();
+    }
 }
