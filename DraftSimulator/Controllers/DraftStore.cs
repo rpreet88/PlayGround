@@ -29,7 +29,7 @@ public class DraftStore
 
         if (draft is null)
         {
-            throw new GeneralFailure();
+            throw new DraftNotFound();
         }
 
         return draft;
@@ -40,13 +40,13 @@ public class DraftStore
         Draft? draft = Get(draftId);
         if (draft is null)
         {
-            throw new GeneralFailure();
+            throw new DraftNotFound();
         }
 
         Team? team = draft.Teams.FirstOrDefault(t => t.TeamId == teamId);
         if (team == null)
         {
-            throw new GeneralFailure();
+            throw new TeamNotFound();
         }
 
         team.Players.Add(player);
