@@ -39,7 +39,7 @@ public class DraftController : ControllerBase
         Team? team = draft.Teams.FirstOrDefault(t => t.TeamId == teamId);
         if (team == null)
         {
-            return NotFound();
+            throw new TeamNotFound();
         }
         return Ok(team);
     }

@@ -21,6 +21,36 @@ public class InvalidRequest : DraftException
             HttpStatusCode.BadRequest;
 }
 
+public class DraftNotFound : DraftException
+{
+    public DraftNotFound()
+        : base("unable to find specified draft.")
+    {  }
+
+    public override HttpStatusCode StatusCode => 
+            HttpStatusCode.NotFound;
+}
+
+public class TeamNotFound : DraftException
+{
+    public TeamNotFound()
+        : base("unable to find specified team.")
+    {  }
+
+    public override HttpStatusCode StatusCode => 
+            HttpStatusCode.NotFound;
+}
+
+public class PlayerNotFound : DraftException
+{
+    public PlayerNotFound()
+        : base("unable to find specified player.")
+    {  }
+
+    public override HttpStatusCode StatusCode => 
+            HttpStatusCode.NotFound;
+}
+
 public class GeneralFailure : DraftException
 {
     public GeneralFailure()
