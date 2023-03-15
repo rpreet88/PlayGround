@@ -1,0 +1,35 @@
+name: Player Service - Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - './PlayerService/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - './PlayerService/**'
+
+jobs:
+
+  build-and-test:
+    runs-on: windows-latest  
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    
+    - name: Restore dependencies - PlayerService
+      run: dotnet restore
+      working-directory: ./PlayerService
+      
+    - name: Build Project - PlayerService
+      run: dotnet build
+      working-directory: ./PlayerService
