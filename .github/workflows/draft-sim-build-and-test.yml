@@ -4,11 +4,11 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - './DraftSimulator/**'
+      - 'DraftSimulator/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - './DraftSimulator/**'
+      - 'DraftSimulator/**'
 
 jobs:
 
