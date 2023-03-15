@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Draft Simulator - Docker Image Build and Push
 
 on:
   push:
