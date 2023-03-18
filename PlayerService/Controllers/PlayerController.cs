@@ -8,22 +8,27 @@ namespace PlayerService.Controllers;
 public class PlayerController : ControllerBase
 {
     private readonly ILogger<PlayerController> _logger;
+    private PlayerStore _playerStore;
 
     public PlayerController(
+        PlayerStore playerStore,
         ILogger<PlayerController> logger)
     {
         _logger = logger;
-    }
-
-    [HttpPost]
-    public IActionResult Add()
-    {
-        return Ok();
+        _playerStore = playerStore;
     }
 
     [HttpGet("{id}")]
-    public IActionResult Get(Guid id)
+    public IActionResult GetPlayer(int id)
     {  
-        return Ok();
+        var player = _playerStore.GetPlayer(id);
+        return Ok(player);
+    }
+
+    [Route("/players")]
+    public IActionResult GetPlayers(int id)
+    {  
+        var players = _playerStore.GetPlayers();
+        return Ok(players);
     }
 }
