@@ -27,12 +27,7 @@ public class DraftStore
         Draft? draft;
         _draftStore.TryGetValue(draftId, out draft);
 
-        if (draft is null)
-        {
-            throw new DraftNotFound();
-        }
-
-        return draft;
+        throw new DraftNotFound();
     }
 
     public void AddPlayer(Guid draftId, Guid teamId, Player player)
