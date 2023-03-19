@@ -4,6 +4,12 @@ public class Draft
 {
     public Draft(NewDraft newDraft)
     {
+        if (newDraft is null || 
+            newDraft.Teams is null)
+        {
+            throw new Exception("Invalid new draft input.");
+        }
+
         DraftId = Guid.NewGuid();
         Name = newDraft.Name ?? "NoName";
         Type = newDraft.Type ?? "NoType";
