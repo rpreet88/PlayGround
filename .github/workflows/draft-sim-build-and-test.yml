@@ -5,10 +5,12 @@ on:
     branches: [ "main" ]
     paths:
       - 'DraftSimulator/**'
+      - 'DraftSimulator.Tests/**'
   pull_request:
     branches: [ "main" ]
     paths:
       - 'DraftSimulator/**'
+      - 'DraftSimulator.Tests/**'
 
 jobs:
 
