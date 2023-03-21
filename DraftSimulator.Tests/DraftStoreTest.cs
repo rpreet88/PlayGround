@@ -94,4 +94,55 @@ public class DraftStoreTest
         // Assert
         Assert.Throws<DraftNotFound>(() => draftStore.Get(Guid.NewGuid()));
     }
+
+    [Fact]
+    public void AddPlayerSuccessfully()
+    {
+        // Arrange
+        NewDraft newDraft = new NewDraft()
+        {
+            Name = "MockDraft",
+            Type = "Hockey",
+            NumPlayers = 2,
+            Teams = new string[] { "Ryan", "Daniel" }
+        };
+        
+        #nullable disable
+        DraftStore draftStore = new DraftStore(mockLogger.Object);
+        Assert.NotNull(draftStore);
+        #nullable enable
+        
+        Draft mockDraft = draftStore.Add(newDraft);
+        Assert.NotNull(mockDraft);
+        Assert.NotNull(mockDraft.Teams);
+
+        #nullable disable
+        Team team = mockDraft.Teams.FirstOrDefault();
+        Assert.NotNull(team);
+        #nullable enable
+
+        Player player = new Player()
+        {
+            Name = "Lebron James"
+        };
+
+        // Act
+        draftStore.AddPlayer(mockDraft.DraftId, team.TeamId, player);
+        mockDraft  = draftStore.Get(mockDraft.DraftId);
+        Assert.NotNull(mockDraft);
+        Assert.NotNull(mockDraft.Teams);
+
+        #nullable disable
+        Team teamResult = mockDraft.Teams.FirstOrDefault();
+        Assert.NotNull(teamResult);
+        #nullable enable
+
+        // Assert
+        Assert.NotNull(teamResult.Players);
+        #nullable disable
+        Player playerResult = teamResult.Players.FirstOrDefault();
+        Assert.NotNull(playerResult);
+        #nullable enable
+        Assert.True(playerResult.Name == player.Name);
+    }
 }
