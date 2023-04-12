@@ -9,12 +9,15 @@ public class DraftController : ControllerBase
 {
     private readonly ILogger<DraftController> _logger;
     private DraftStore _draftStore;
+    private IPlayerClient _playerClient;
 
     public DraftController(
         DraftStore draftStore,
+        IPlayerClient playerClient,
         ILogger<DraftController> logger)
     {
         _draftStore = draftStore;
+        _playerClient = playerClient;
         _logger = logger;
     }
 
@@ -36,7 +39,7 @@ public class DraftController : ControllerBase
     public IActionResult Get(Guid draftId, Guid teamId)
     {  
         Draft draft = _draftStore.Get(draftId);
-        Team? team = draft.Teams.FirstOrDefault(t => t.TeamId == teamId);
+        DraftTeam? team = draft.DraftTeams.FirstOrDefault(t => t.TeamId == teamId);
         if (team == null)
         {
             throw new TeamNotFound();
@@ -44,14 +47,16 @@ public class DraftController : ControllerBase
         return Ok(team);
     }
 
-    [HttpPost("{draftId}/team/{teamId}/player")]
-    public IActionResult Add(Guid draftId, Guid teamId, [FromBody] string playerId)
+    [HttpPost("{draftId}/team/{teamId}/player/{playerId}")]
+    public async Task<IActionResult> Add(Guid draftId, Guid teamId, string playerId)
     {
-        Player player = new Player
+        if (!int.TryParse(playerId, out int _playerId))
         {
-            Name = playerId
-        };
+            return BadRequest("Invalid player ID.");
+        }
 
+        Player player = 
+            await _playerClient.GetPlayer(_playerId).ConfigureAwait(false);
         _draftStore.AddPlayer(draftId, teamId, player);
         return Ok();
     }

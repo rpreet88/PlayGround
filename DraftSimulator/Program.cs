@@ -9,6 +9,23 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<DraftStore>();
 builder.Services.AddSingleton<ExceptionHandlerMiddleware>();
 
+builder.Services.AddHttpClient("PlayerClient", httpClient =>
+{
+    httpClient.BaseAddress = new Uri("http://localhost:8081/");
+});
+
+builder.Services.AddTransient<IPlayerClient>(provider =>
+{
+    var httpClientFactory = provider.GetRequiredService<IHttpClientFactory>();
+    var httpclient = httpClientFactory.CreateClient("PlayerClient");
+    if (httpclient is null)
+    {
+        throw new Exception("Failed to setup StatsApiClient.");
+    }
+
+    return new PlayerClient(httpclient);
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

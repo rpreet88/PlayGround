@@ -1,8 +1,8 @@
 namespace DraftSimulator;
 
-public class Team
+public class DraftTeam
 {
-    public Team()
+    public DraftTeam()
     {
         Players = new List<Player>();
     }

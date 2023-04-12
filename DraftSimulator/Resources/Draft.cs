@@ -5,7 +5,7 @@ public class Draft
     public Draft(NewDraft newDraft)
     {
         if (newDraft is null || 
-            newDraft.Teams is null)
+            newDraft.DraftTeams is null)
         {
             throw new Exception("Invalid new draft input.");
         }
@@ -15,15 +15,15 @@ public class Draft
         Type = newDraft.Type ?? "NoType";
         NumPlayers = newDraft.NumPlayers;
 
-        Teams = new List<Team>();
-        foreach (string teamName in newDraft.Teams)
+        DraftTeams = new List<DraftTeam>();
+        foreach (string teamName in newDraft.DraftTeams)
         {
-            Team team = new Team
+            DraftTeam team = new DraftTeam
             {
                 TeamId = Guid.NewGuid(),
                 Name = teamName
             };
-            Teams.Add(team);
+            DraftTeams.Add(team);
         }
     }
     
@@ -35,5 +35,5 @@ public class Draft
 
     public int NumPlayers { get; set; }
 
-    public List<Team> Teams { get; set; }
+    public List<DraftTeam> DraftTeams { get; set; }
 }

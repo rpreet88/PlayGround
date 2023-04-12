@@ -22,7 +22,7 @@ public class DraftStoreTest
             Name = "MockDraft",
             Type = "Hockey",
             NumPlayers = 2,
-            Teams = new string[] { "Ryan", "Daniel" }
+            DraftTeams = new string[] { "Ryan", "Daniel" }
         };
 
         #nullable disable
@@ -38,9 +38,9 @@ public class DraftStoreTest
         Assert.True(mockDraft.Name == newDraft.Name);
         Assert.True(mockDraft.Type == newDraft.Type);
         Assert.True(mockDraft.NumPlayers == newDraft.NumPlayers);
-        foreach(var team in mockDraft.Teams)
+        foreach(var team in mockDraft.DraftTeams)
         {
-            Assert.Contains(team.Name, newDraft.Teams);
+            Assert.Contains(team.Name, newDraft.DraftTeams);
         }
     }
 
@@ -53,7 +53,7 @@ public class DraftStoreTest
             Name = "MockDraft",
             Type = "Hockey",
             NumPlayers = 2,
-            Teams = new string[] { "Ryan", "Daniel" }
+            DraftTeams = new string[] { "Ryan", "Daniel" }
         };
 
         #nullable disable
@@ -79,7 +79,7 @@ public class DraftStoreTest
             Name = "MockDraft",
             Type = "Hockey",
             NumPlayers = 2,
-            Teams = new string[] { "Ryan", "Daniel" }
+            DraftTeams = new string[] { "Ryan", "Daniel" }
         };
         
         #nullable disable
@@ -104,7 +104,7 @@ public class DraftStoreTest
             Name = "MockDraft",
             Type = "Hockey",
             NumPlayers = 2,
-            Teams = new string[] { "Ryan", "Daniel" }
+            DraftTeams = new string[] { "Ryan", "Daniel" }
         };
         
         #nullable disable
@@ -114,26 +114,26 @@ public class DraftStoreTest
         
         Draft mockDraft = draftStore.Add(newDraft);
         Assert.NotNull(mockDraft);
-        Assert.NotNull(mockDraft.Teams);
+        Assert.NotNull(mockDraft.DraftTeams);
 
         #nullable disable
-        Team team = mockDraft.Teams.FirstOrDefault();
+        DraftTeam team = mockDraft.DraftTeams.FirstOrDefault();
         Assert.NotNull(team);
         #nullable enable
 
         Player player = new Player()
         {
-            Name = "Lebron James"
+            FullName = "Lebron James"
         };
 
         // Act
         draftStore.AddPlayer(mockDraft.DraftId, team.TeamId, player);
         mockDraft  = draftStore.Get(mockDraft.DraftId);
         Assert.NotNull(mockDraft);
-        Assert.NotNull(mockDraft.Teams);
+        Assert.NotNull(mockDraft.DraftTeams);
 
         #nullable disable
-        Team teamResult = mockDraft.Teams.FirstOrDefault();
+        DraftTeam teamResult = mockDraft.DraftTeams.FirstOrDefault();
         Assert.NotNull(teamResult);
         #nullable enable
 
@@ -143,6 +143,6 @@ public class DraftStoreTest
         Player playerResult = teamResult.Players.FirstOrDefault();
         Assert.NotNull(playerResult);
         #nullable enable
-        Assert.True(playerResult.Name == player.Name);
+        Assert.True(playerResult.FullName == player.FullName);
     }
 }
