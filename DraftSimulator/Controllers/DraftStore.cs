@@ -43,7 +43,7 @@ public class DraftStore
             throw new DraftNotFound();
         }
 
-        Team? team = draft.Teams.FirstOrDefault(t => t.TeamId == teamId);
+        DraftTeam? team = draft.DraftTeams.FirstOrDefault(t => t.TeamId == teamId);
         if (team == null)
         {
             throw new TeamNotFound();

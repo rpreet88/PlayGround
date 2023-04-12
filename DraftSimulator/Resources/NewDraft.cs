@@ -8,5 +8,5 @@ public class NewDraft
 
     public int NumPlayers { get; set;}
 
-    public string[]? Teams { get; set; }
+    public string[]? DraftTeams { get; set; }
 }
