@@ -9,7 +9,7 @@ namespace DraftSimulator;
 
 public class PlayerClient : IPlayerClient
 {
-    private readonly string _playerPath = "/player/{0}";
+    private readonly string _playerPath = "/api/v1/player/{0}";
     private readonly HttpClient _httpClient;
 
     public PlayerClient(HttpClient httpClient)
