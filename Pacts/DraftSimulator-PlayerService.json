@@ -12,7 +12,7 @@
       ],
       "request": {
         "method": "GET",
-        "path": "/player/8473541"
+        "path": "/api/v1/player/8473541"
       },
       "response": {
         "body": {

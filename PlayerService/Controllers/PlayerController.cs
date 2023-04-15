@@ -4,7 +4,7 @@ using System;
 namespace PlayerService.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v1/[controller]")]
 public class PlayerController : ControllerBase
 {
     private readonly ILogger<PlayerController> _logger;
@@ -25,7 +25,7 @@ public class PlayerController : ControllerBase
         return Ok(player);
     }
 
-    [Route("/players")]
+    [Route("api/v1/players")]
     public IActionResult GetPlayers(int id)
     {  
         var players = _playerStore.GetPlayers();

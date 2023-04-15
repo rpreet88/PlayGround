@@ -31,7 +31,7 @@ public class DraftControllerContractTest
         _pactBuilder
             .UponReceiving("a request to retrieve a player")
                 .Given("a player with ID 8473541 exists")
-                .WithRequest(HttpMethod.Get, "/player/8473541")
+                .WithRequest(HttpMethod.Get, "/api/v1/player/8473541")
             .WillRespond()
                 .WithStatus(System.Net.HttpStatusCode.OK)
                 .WithHeader("Content-Type", "application/json; charset=utf-8")
