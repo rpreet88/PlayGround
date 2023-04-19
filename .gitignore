@@ -4,3 +4,5 @@ DraftSimulator.Tests/bin
 DraftSimulator.Tests/obj
 PlayerService/bin
 PlayerService/obj
+PlayerService.Tests/bin
+PlayerService.Tests/obj

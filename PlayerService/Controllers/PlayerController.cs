@@ -25,7 +25,7 @@ public class PlayerController : ControllerBase
         return Ok(player);
     }
 
-    [Route("api/v1/players")]
+    [Route("")]
     public IActionResult GetPlayers(int id)
     {  
         var players = _playerStore.GetPlayers();

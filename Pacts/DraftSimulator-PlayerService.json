@@ -5,11 +5,6 @@
   "interactions": [
     {
       "description": "a request to retrieve a player",
-      "providerStates": [
-        {
-          "name": "a player with ID 8473541 exists"
-        }
-      ],
       "request": {
         "method": "GET",
         "path": "/api/v1/player/8473541"
@@ -20,7 +15,7 @@
           "currentTeam": {
             "id": 1,
             "link": "/api/v1/teams/1",
-            "locationName": "",
+            "locationName": null,
             "name": "New Jersey Devils"
           },
           "fullName": "Jonathan Bernier",

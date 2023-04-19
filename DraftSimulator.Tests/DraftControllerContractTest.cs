@@ -30,7 +30,6 @@ public class DraftControllerContractTest
         // Define the expected request and response for the Player service
         _pactBuilder
             .UponReceiving("a request to retrieve a player")
-                .Given("a player with ID 8473541 exists")
                 .WithRequest(HttpMethod.Get, "/api/v1/player/8473541")
             .WillRespond()
                 .WithStatus(System.Net.HttpStatusCode.OK)
@@ -46,7 +45,7 @@ public class DraftControllerContractTest
                         id = 1,
                         name = "New Jersey Devils",
                         link = "/api/v1/teams/1",
-                        locationName = ""
+                        locationName = (string?)null
                     },
                     primaryPosition = new {
                         code = "G",

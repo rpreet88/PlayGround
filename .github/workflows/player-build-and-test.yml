@@ -5,10 +5,14 @@ on:
     branches: [ "main" ]
     paths:
       - 'PlayerService/**'
+      - 'PlayerService.Tests/**'
+      - 'Pacts/**'
   pull_request:
     branches: [ "main" ]
     paths:
       - 'PlayerService/**'
+      - 'PlayerService.Tests/**'
+      - 'Pacts/**'
 
 jobs:
 
@@ -33,3 +37,15 @@ jobs:
     - name: Build Project - PlayerService
       run: dotnet build
       working-directory: ./PlayerService
+
+    - name: Restore dependencies - PlayerServiceTests
+      run: dotnet restore
+      working-directory: ./PlayerService.Tests
+      
+    - name: Build Project - PlayerServiceTests
+      run: dotnet build
+      working-directory: ./PlayerService.Tests
+
+    - name: Run Tests - PlayerService
+      run: dotnet test
+      working-directory: ./PlayerService.Tests

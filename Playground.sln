@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerService", "PlayerServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DraftSimulator.Tests", "DraftSimulator.Tests\DraftSimulator.Tests.csproj", "{B538F8CF-299A-40DC-8BD0-F89257332558}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayerService.Tests", "PlayerService.Tests\PlayerService.Tests.csproj", "{3F006522-8587-4273-B4CE-044E61BDF932}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{B538F8CF-299A-40DC-8BD0-F89257332558}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B538F8CF-299A-40DC-8BD0-F89257332558}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B538F8CF-299A-40DC-8BD0-F89257332558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F006522-8587-4273-B4CE-044E61BDF932}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F006522-8587-4273-B4CE-044E61BDF932}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F006522-8587-4273-B4CE-044E61BDF932}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F006522-8587-4273-B4CE-044E61BDF932}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
