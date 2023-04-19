@@ -6,11 +6,13 @@ on:
     paths:
       - 'DraftSimulator/**'
       - 'DraftSimulator.Tests/**'
+      - 'Pacts/**'
   pull_request:
     branches: [ "main" ]
     paths:
       - 'DraftSimulator/**'
       - 'DraftSimulator.Tests/**'
+      - 'Pacts/**'
 
 jobs:
 
