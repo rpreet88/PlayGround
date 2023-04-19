@@ -14,7 +14,7 @@
           "currentAge": 34,
           "currentTeam": {
             "id": 1,
-            "link": "/api/v1/teams/1",
+            "link": "/api/v1/teams/2",
             "locationName": null,
             "name": "New Jersey Devils"
           },
