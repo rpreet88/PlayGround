@@ -50,21 +50,21 @@ namespace DraftSimulator.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Players",
+                name: "DraftedPlayers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    DraftTeamId = table.Column<Guid>(type: "uuid", nullable: false),
                     FullName = table.Column<string>(type: "text", nullable: false),
                     PrimaryNumber = table.Column<int>(type: "integer", nullable: false),
                     CurrentAge = table.Column<int>(type: "integer", nullable: false),
                     ShootsCatches = table.Column<string>(type: "text", nullable: false),
+                    DraftTeamId = table.Column<Guid>(type: "uuid", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Players", x => x.Id);
+                    table.PrimaryKey("PK_DraftedPlayers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Player_DraftTeam",
                         column: x => x.DraftTeamId,
@@ -74,7 +74,7 @@ namespace DraftSimulator.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlayerPositions",
+                name: "DraftedPlayerPositions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -87,17 +87,17 @@ namespace DraftSimulator.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlayerPositions", x => x.Id);
+                    table.PrimaryKey("PK_DraftedPlayerPositions", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Player_Position",
                         column: x => x.PlayerId,
-                        principalTable: "Players",
+                        principalTable: "DraftedPlayers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "SportsTeams",
+                name: "DraftedSportsTeams",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -110,49 +110,49 @@ namespace DraftSimulator.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SportsTeams", x => x.Id);
+                    table.PrimaryKey("PK_DraftedSportsTeams", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Player_SportsTeam",
                         column: x => x.PlayerId,
-                        principalTable: "Players",
+                        principalTable: "DraftedPlayers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DraftTeams_DraftId",
-                table: "DraftTeams",
-                column: "DraftId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlayerPositions_PlayerId",
-                table: "PlayerPositions",
+                name: "IX_DraftedPlayerPositions_PlayerId",
+                table: "DraftedPlayerPositions",
                 column: "PlayerId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Players_DraftTeamId",
-                table: "Players",
+                name: "IX_DraftedPlayers_DraftTeamId",
+                table: "DraftedPlayers",
                 column: "DraftTeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SportsTeams_PlayerId",
-                table: "SportsTeams",
+                name: "IX_DraftedSportsTeams_PlayerId",
+                table: "DraftedSportsTeams",
                 column: "PlayerId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DraftTeams_DraftId",
+                table: "DraftTeams",
+                column: "DraftId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PlayerPositions");
+                name: "DraftedPlayerPositions");
 
             migrationBuilder.DropTable(
-                name: "SportsTeams");
+                name: "DraftedSportsTeams");
 
             migrationBuilder.DropTable(
-                name: "Players");
+                name: "DraftedPlayers");
 
             migrationBuilder.DropTable(
                 name: "DraftTeams");

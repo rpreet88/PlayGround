@@ -20,7 +20,5 @@ public class DraftMappingProfile : Profile
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
             .ForMember(dest => dest.NumPlayers, opt => opt.MapFrom(src => src.NumPlayers))
             .ForMember(dest => dest.DraftTeams, opt => opt.MapFrom(src => src.DraftTeams));
-
-        //IncludeProfile<TeamProfile>();
     }
 }
