@@ -9,11 +9,11 @@ public class ApiDbContext : DbContext
 
     public virtual DbSet<DraftTeamEntity> DraftTeams { get; set; } = null!;
     
-    public virtual DbSet<PlayerEntity> Players { get; set; } = null!;
+    public virtual DbSet<PlayerEntity> DraftedPlayers { get; set; } = null!;
 
-    public virtual DbSet<TeamEntity> SportsTeams { get; set; } = null!;
+    public virtual DbSet<TeamEntity> DraftedSportsTeams { get; set; } = null!;
 
-    public virtual DbSet<PositionEntity> PlayerPositions { get; set; } = null!;
+    public virtual DbSet<PositionEntity> DraftedPlayerPositions { get; set; } = null!;
 
     public ApiDbContext(DbContextOptions<ApiDbContext> options)
         : base(options)

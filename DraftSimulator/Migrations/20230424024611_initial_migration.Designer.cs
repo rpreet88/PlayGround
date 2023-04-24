@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DraftSimulator.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20230422203932_initial_migration")]
+    [Migration("20230424024611_initial_migration")]
     partial class initial_migration
     {
         /// <inheritdoc />
@@ -115,7 +115,7 @@ namespace DraftSimulator.Migrations
 
                     b.HasIndex("DraftTeamId");
 
-                    b.ToTable("Players");
+                    b.ToTable("DraftedPlayers");
                 });
 
             modelBuilder.Entity("DraftSimulator.PositionEntity", b =>
@@ -150,7 +150,7 @@ namespace DraftSimulator.Migrations
                     b.HasIndex("PlayerId")
                         .IsUnique();
 
-                    b.ToTable("PlayerPositions");
+                    b.ToTable("DraftedPlayerPositions");
                 });
 
             modelBuilder.Entity("DraftSimulator.TeamEntity", b =>
@@ -185,7 +185,7 @@ namespace DraftSimulator.Migrations
                     b.HasIndex("PlayerId")
                         .IsUnique();
 
-                    b.ToTable("SportsTeams");
+                    b.ToTable("DraftedSportsTeams");
                 });
 
             modelBuilder.Entity("DraftSimulator.DraftTeamEntity", b =>

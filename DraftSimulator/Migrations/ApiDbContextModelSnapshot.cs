@@ -112,7 +112,7 @@ namespace DraftSimulator.Migrations
 
                     b.HasIndex("DraftTeamId");
 
-                    b.ToTable("Players");
+                    b.ToTable("DraftedPlayers");
                 });
 
             modelBuilder.Entity("DraftSimulator.PositionEntity", b =>
@@ -147,7 +147,7 @@ namespace DraftSimulator.Migrations
                     b.HasIndex("PlayerId")
                         .IsUnique();
 
-                    b.ToTable("PlayerPositions");
+                    b.ToTable("DraftedPlayerPositions");
                 });
 
             modelBuilder.Entity("DraftSimulator.TeamEntity", b =>
@@ -182,7 +182,7 @@ namespace DraftSimulator.Migrations
                     b.HasIndex("PlayerId")
                         .IsUnique();
 
-                    b.ToTable("SportsTeams");
+                    b.ToTable("DraftedSportsTeams");
                 });
 
             modelBuilder.Entity("DraftSimulator.DraftTeamEntity", b =>
