@@ -21,6 +21,7 @@ public class Team
 
 public class Position
 {
+    public Guid Id { get; set; } = new Guid();
     public string? Code { get; set; }
     public string? Name { get; set; }
     public string? Type { get; set; }
