@@ -1,7 +1,10 @@
 
+using DraftSimulator;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+
 // Add Services --------------------------------------------------------------------------------------
 
-using DraftSimulator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +28,12 @@ builder.Services.AddTransient<IPlayerClient>(provider =>
 
     return new PlayerClient(httpclient);
 });
+
+builder.Services.AddEntityFrameworkNpgsql()
+    .AddDbContext<ApiDbContext>(
+    opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("DraftSimDbConnection")));
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

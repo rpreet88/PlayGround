@@ -39,7 +39,7 @@ public class DraftController : ControllerBase
     public IActionResult Get(Guid draftId, Guid teamId)
     {  
         Draft draft = _draftStore.Get(draftId);
-        DraftTeam? team = draft.DraftTeams.FirstOrDefault(t => t.TeamId == teamId);
+        DraftTeam? team = draft?.DraftTeams?.FirstOrDefault(t => t.TeamId == teamId);
         if (team == null)
         {
             throw new TeamNotFound();

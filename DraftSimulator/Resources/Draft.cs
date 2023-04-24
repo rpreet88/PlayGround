@@ -11,8 +11,8 @@ public class Draft
         }
 
         DraftId = Guid.NewGuid();
-        Name = newDraft.Name ?? "NoName";
-        Type = newDraft.Type ?? "NoType";
+        Name = newDraft.Name;
+        Type = newDraft.Type;
         NumPlayers = newDraft.NumPlayers;
 
         DraftTeams = new List<DraftTeam>();
@@ -26,14 +26,16 @@ public class Draft
             DraftTeams.Add(team);
         }
     }
+
+    public Draft() {}
     
-    public System.Guid DraftId { get; }
+    public System.Guid DraftId { get; set; } = new Guid();
 
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
 
-    public string Type { get; }
+    public string Type { get; set;} = "";
 
-    public int NumPlayers { get; set; }
+    public int NumPlayers { get; set; } = 0;
 
-    public List<DraftTeam> DraftTeams { get; set; }
+    public List<DraftTeam>? DraftTeams { get; set; }
 }
